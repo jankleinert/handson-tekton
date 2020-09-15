@@ -53,7 +53,7 @@ spec:
 Apply this Task to your cluster just like any other Kubernetes object. Then run it using `tkn`, the CLI tool for Tekton.
 
 ```bash
-oc apply -f ./demo/01-hello.yaml
+kubectl apply -f ./demo/01-hello.yaml
 tkn task start --showlog hello
 ```
 
@@ -93,7 +93,7 @@ Apply this new Task to your cluster with kubectl and then rerun it. You will now
 You can also specify the parameters directly from the command line by using the -p argument.
 
 ```bash
-oc apply -f ./demo/02-param.yaml
+kubectl apply -f ./demo/02-param.yaml
 tkn task start --showlog hello
 tkn task start --showlog -p person=Joel hello
 ```
@@ -139,7 +139,7 @@ spec:
 You can now apply this Task to your cluster and run this Task with tkn. You will see that you can easily see each step's output as the logs outputs in various colours.
 
 ```bash
-oc apply -f ./demo/03-multistep.yaml
+kubectl apply -f ./demo/03-multistep.yaml
 tkn task start --showlog hello
 ```
 
@@ -198,8 +198,8 @@ spec:
 You can now apply the Task and this new Pipeline to your cluster and start the Pipeline. Using `tkn pipeline start` will create a `PipelineRun` with a random name. You can also see the logs of the Pipeline by using the `--showlog` parameter.
 
 ```bash
-oc apply -f ./demo/04-tasks.yaml
-oc apply -f ./demo/05-pipeline.yaml
+kubectl apply -f ./demo/04-tasks.yaml
+kubectl apply -f ./demo/05-pipeline.yaml
 tkn pipeline start say-things --showlog
 ```
 
@@ -256,7 +256,7 @@ spec:
 If you apply this new Pipeline and run it with the Tekton CLI tool, you should see the logs from each Task, and you should see them in order. If you've installed the Tekton VS Code extension by Red Hat, you will also be able to see a preview of your Pipeline and see the order in which each of the steps is happening.
 
 ```bash
-oc apply -f ./demo/06-pipeline-order.yaml
+kubectl apply -f ./demo/06-pipeline-order.yaml
 tkn pipeline start say-things-in-order --showlog
 ```
 
@@ -325,7 +325,7 @@ spec:
 Once you have all the required pieces, you can apply this file to the cluster again, and start this pipelinerun. When you begin the Pipeline with the CLI, you will be prompted on the git resource to use. You can either use the resource you've just created or create your own. You could also use the `--resource` parameter with the CLI to specify which resources to use.
 
 ```bash
-oc apply -f ./demo/07-pipelineresource.yaml
+kubectl apply -f ./demo/07-pipelineresource.yaml
 tkn pipeline start count --showlog
 tkn pipeline start count --showlog --resource git-repo=git-repo
 ```
@@ -453,7 +453,7 @@ spec:
 You are now ready to deploy your application. First, apply this file to your cluster and then start this new Pipeline using the Tekton CLI tool. It will take a little bit more time as it goes through all the steps. Once your Pipeline completed, you can start the application by using `docker run`. This container will start the NodeJS server on port 3000. The server has a route called /add that will take two parameters and add them together. You can test this out by using a `curl` command.
 
 ```bash
-oc apply -f ./demo/08-realworld.yaml
+kubectl apply -f ./demo/08-realworld.yaml
 tkn pipeline start app-deploy --showlog
 docker run -d -p 3000:3000 --rm --name handson <user>/<image-name>
 curl localhost:3000/add/2/5
