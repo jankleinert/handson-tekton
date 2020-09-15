@@ -466,4 +466,5 @@ If you want to keep learning more about Tekton, check out these resources:
 * https://hub-preview.tekton.dev - Tekton Hub, where you can find reusable tasks and pipelines
 * https://developers.redhat.com/topics/ci-cd - Developer-facing info on CI/CD and Tekton
 * https://www.openshift.com/learn/topics/pipelines - Learn about OpenShift Pipelines
+* https://learn.openshift.com/playgrounds - OpenShift Playgrounds, where you can experiment with OpenShift for 60 minutes
 
