@@ -1,6 +1,9 @@
 # Hands-On Tekton
 
 ## Requirements
+
+* [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) -OR- [Katacoda Kubernetes Playground](https://www.katacoda.com/courses/kubernetes/playground)
+* [tkn](https://github.com/tektoncd/cli)
 * (Optional) [VS Code Tekton extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-tekton-pipelines)
 
 ## Intro
@@ -11,18 +14,21 @@
 
 ## Installation
 
-* Go to https://bit.ly/pickusername to choose a username for the lab.
-* Go to the "Cluster 2" tab and find a row where there isn't a name in the "Your name" column. Add yourself there, to "claim" that username. You can see that I have claimed user1. That means when I log into OpenShift, I will sign in with user1 as my username. The password for all users in this workshop is in cell I1 of the spreadsheet.
-* Once you have claimed a username, click the link next to "Cluster URL". On the login screen, enter the userX username you chose and the password from cell I1.
-* You should have one namespace or project available, with the same name as your username. Click on that project name. I've deployed a web-based terminal for each of you. Go to Networking -> Routes in the left navigation and click teh URL for the route in the location column. This will open a web terminal.
-* Log into the web terminal by typing `oc login <API URL>`. You can find the API URL in the pick username spreadsheet in cell B2. Use the same username and password as you did in the web console.
+First, make sure you've installed [tkn](https://github.com/tektoncd/cli) in your environment, whether you are using Minikube on your local machine or the Kubernetes playground. If you're using the Kubernetes playground, enter commands in the top terminal labeled Terminal Host 1. 
 
-Clone this repository and cd into the `handson-tekton` directory.
+Then, install Tekton on your cluster.
+
+```bash
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
+```
+
+Finally, clone this repository and cd into the `handson-tekton` directory.
 
 ```bash
 git clone https://github.com/jankleinert/handson-tekton
 cd handson-tekton
 ```
+
 
 ## Create a Hello World task
 
@@ -313,7 +319,7 @@ spec:
   type: git  
   params:
     - name: url
-      value: https://github.com/joellord/handson-tekton.git
+      value: https://github.com/jankleinert/handson-tekton.git
 ```
 
 Once you have all the required pieces, you can apply this file to the cluster again, and start this pipelinerun. When you begin the Pipeline with the CLI, you will be prompted on the git resource to use. You can either use the resource you've just created or create your own. You could also use the `--resource` parameter with the CLI to specify which resources to use.
